@@ -15,5 +15,5 @@
   # TLP
   services.tlp = {
     enable = true;
-  }
+  };
 }

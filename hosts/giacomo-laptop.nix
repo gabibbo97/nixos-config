@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ../modules/wifi.nix
+    ../modules/laptop.nix
   ];
 }

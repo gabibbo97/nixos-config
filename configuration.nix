@@ -6,6 +6,7 @@ in
   imports =
     [
       (./. + "/hosts/${deviceName}.nix")
+      ./modules/network/network.nix
       ./modules/docker.nix
       ./modules/sway.nix
       # Include the results of the hardware scan.
@@ -34,22 +35,6 @@ in
     linuxcrypt = {
       device = "/dev/disk/by-label/LINUXCRYPT";
       preLVM = true;
-    };
-  };
-
-  # Networking
-  networking = {
-    hostName = "${deviceName}";
-    useDHCP = false;
-    useNetworkd = true;
-  };
-  services = {
-    resolved = {
-      enable = true;
-      fallbackDns = [ "1.1.1.1" "8.8.8.8" "9.9.9.9" ];
-    };
-    timesyncd = {
-      enable = true;
     };
   };
 
@@ -110,6 +95,8 @@ in
       dates = [ "weekly" ];
     };
   };
+
+  networking.hostname = "${deviceName}";
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database

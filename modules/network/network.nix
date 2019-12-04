@@ -14,7 +14,7 @@
           name = "e*";
         };
         "99-main" = { # FIXME: disable 99-main.conf
-          enable = "false";
+          enable = false;
         };
       };
     };

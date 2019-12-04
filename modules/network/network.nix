@@ -5,7 +5,20 @@
     useDHCP = false;
     useNetworkd = true;
   };
-  systemd.network.networks."99-main".enable = false; # FIXME: disable 99-main.conf
+  systemd = {
+    network = {
+      enable = true;
+      networks = {
+        ethernet = {
+          DHCP = "yes";
+          name = "e*";
+        };
+        "99-main" = { # FIXME: disable 99-main.conf
+          enable = "false";
+        };
+      };
+    };
+  };
   services = {
     resolved = {
       enable = true;

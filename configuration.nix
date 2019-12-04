@@ -47,19 +47,6 @@ in
     };
   };
 
-  # Systemd
-  systemd = {
-    network = {
-      enable = true;
-      networks = {
-        ethernet = {
-          DHCP = "yes";
-          name = "e*";
-        };
-      };
-    };
-  };
-
   # Internationalisation properties.
   i18n = {
     consoleKeyMap = "us";

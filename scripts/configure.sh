@@ -36,7 +36,7 @@ if [ $# -eq 0 ]; then
   if ! [ -f secrets.gpg ]; then
     echo "No secrets.gpg file found!" >/dev/stderr && exit 1
   fi
-  gpg --decrypt --output secrets.nix <secrets.gpg
+  gpg --decrypt --output secrets.nix secrets.gpg
   ## Generate assets
   ASSETDIR="$(mktemp -d)"
   rsync -acq --delete \
@@ -62,5 +62,5 @@ elif [ $# -eq 1 ] && [ "$1" = "backup" ]; then
   devname=$(grep 'deviceName' configuration.nix | grep '=' | grep -v '\$' | grep -v '{' | grep -v '}' | awk '{ print $3 }' | tr -d '"')
   sed -i "s/${devname}/{{ deviceName }}/" configuration.nix
   ## Encrypt secrets
-  gpg --symmetric --output secrets.gpg <secrets.nix
+  gpg --symmetric --output secrets.gpg secrets.nix
 fi

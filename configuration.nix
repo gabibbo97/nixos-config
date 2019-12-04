@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  deviceName = "{{ deviceName }}"
+  deviceName = "{{ deviceName }}";
 in
 {
   imports =

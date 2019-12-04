@@ -5,7 +5,7 @@ in
 {
   imports =
     [
-      "./hosts/${deviceName}.nix"
+      (./. + "/hosts/${deviceName}.nix")
       ./modules/docker.nix
       ./modules/sway.nix
       # Include the results of the hardware scan.

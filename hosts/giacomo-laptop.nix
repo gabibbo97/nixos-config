@@ -2,5 +2,5 @@
 {
   imports = [
     ../modules/wifi.nix
-  ]
+  ];
 }

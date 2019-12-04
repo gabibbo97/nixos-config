@@ -50,6 +50,8 @@ if [ $# -eq 0 ]; then
   sed -i "s/{{ deviceName }}/${MACHINE}/" "${ASSETDIR}/configuration.nix"
   ## Copy assets
   sudo rsync -acv --delete "$ASSETDIR/" /etc/nixos/
+  ## Recreate hardware-configuration.nix
+  nixos-generate-config
 elif [ $# -eq 1 ] && [ "$1" = "backup" ]; then
   # Backup
   echo "Backing up"

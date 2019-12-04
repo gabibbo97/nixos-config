@@ -6,6 +6,7 @@ in
   imports =
     [
       (./. + "/hosts/${deviceName}.nix")
+      ./modules/home-manager/home-manager.nix
       ./modules/network/network.nix
       ./modules/docker.nix
       ./modules/sway.nix

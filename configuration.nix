@@ -10,12 +10,19 @@ in
 {
   imports =
     [
-      (./. + "/hosts/${deviceName}.nix")
+      (./. + "/hosts/${deviceName}/${deviceName}.nix")
+      ./modules/adb.nix
+      ./modules/audio.nix
+      ./modules/docker.nix
+      ./modules/fonts.nix
       ./modules/home-manager/home-manager.nix
       ./modules/k8s.nix
       ./modules/network/network.nix
-      ./modules/docker.nix
+      ./modules/office.nix
       ./modules/sway.nix
+      ./modules/virtualisation.nix
+      ./modules/vscode.nix
+      ./modules/zsh.nix
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./secrets.nix
@@ -55,6 +62,10 @@ in
     };
   };
 
+  # Make Stallman sad
+  hardware.enableAllFirmware = true;
+  nixpkgs.config.allowUnfree = true;
+
   # Internationalisation properties.
   i18n = {
     consoleKeyMap = "us";
@@ -93,6 +104,25 @@ in
   };
 
   networking.hostName = "${deviceName}";
+  
+  # Programs
+  programs = {
+    chromium.enable = true;
+    gnupg.agent.enable = true;
+  };
+  environment.systemPackages = with pkgs; [
+    # GUI apps
+    firefox-wayland
+    mpv
+    tdesktop
+
+    # TUI apps
+    aria curl wget # Downloaders
+    bat nnn
+    git
+    gnupg
+    rsync
+  ];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database

@@ -16,11 +16,11 @@ trap cleanup EXIT HUP TERM QUIT
 if [ $# -eq 0 ]; then
   # Configuration
   ## Get machine name
-  if [ -f "hosts/$(hostname).nix" ]; then
+  if [ -f "hosts/$(hostname)/$(hostname).nix" ]; then
     echo "Trying to configure machine $(hostname)"
     MACHINE="$(hostname)"
   else
-    while ! [ -f "hosts/${MACHINE}.nix" ]; do
+    while ! [ -f "hosts/${MACHINE}/${MACHINE}.nix" ]; do
       echo "Available hosts:"
       clear
       for host in hosts/*; do
@@ -61,7 +61,7 @@ elif [ $# -eq 1 ] && [ "$1" = "backup" ]; then
   rsync -acv '/etc/nixos/configuration.nix' .
   rsync -acv '/etc/nixos/secrets.nix' .
   ## Restore configuration.nix template
-  devname=$(grep 'deviceName' configuration.nix | grep '=' | grep -v '\$' | grep -v '{' | grep -v '}' | awk '{ print $3 }' | tr -d '"')
+  devname=$(grep 'deviceName' configuration.nix | grep '=' | grep -v '\$' | grep -v '{' | grep -v '}' | awk '{ print $3 }' | grep -oE '"([^"]+)"' | tr -d '"')
   sed -i "s/${devname}/{{ deviceName }}/" configuration.nix
   ## Encrypt secrets
   gpg --symmetric --output secrets.gpg secrets.nix

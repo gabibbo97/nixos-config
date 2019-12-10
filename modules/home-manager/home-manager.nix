@@ -13,6 +13,7 @@ in
     xdg.configFile."sway/config".source = "${dotfiles-dir}/sway/config";
     xdg.configFile."waybar/style.css".source = "${dotfiles-dir}/waybar/style.css";
   
+    programs.git.enable = true;
     programs.zsh.enable = true;
   };
 }

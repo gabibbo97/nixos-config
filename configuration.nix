@@ -3,7 +3,7 @@ let
   deviceName = "{{ deviceName }}";
   home-manager = builtins.fetchGit {
     url = "https://github.com/rycee/home-manager.git";
-    rev = "dff5f07952e61da708dc8b348ea677414e992215";
+    rev = "5e7a4c55ed110ff3c9d16906d9feeb710e4d0859";
     ref = "release-19.09";
   };
 in

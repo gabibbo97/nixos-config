@@ -12,6 +12,7 @@ in
     [
       (./. + "/hosts/${deviceName}.nix")
       ./modules/home-manager/home-manager.nix
+      ./modules/k8s.nix
       ./modules/network/network.nix
       ./modules/docker.nix
       ./modules/sway.nix

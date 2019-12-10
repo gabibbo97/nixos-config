@@ -7,4 +7,9 @@
       enableOnBoot = false; # Socket activated
     };
   };
+
+  # Enable docker-compose
+  environment.systemPackages = with pkgs; [
+    docker-compose
+  ];
 }

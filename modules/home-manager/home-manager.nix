@@ -14,6 +14,13 @@ in
     xdg.configFile."waybar/style.css".source = "${dotfiles-dir}/waybar/style.css";
   
     programs.git.enable = true;
+    programs.ssh = {
+      enable = true;
+      compression = true;
+      controlMaster = "auto";
+      controlPath = "~/.ssh/control-%r-%h-%p";
+      controlPersist = "3m";
+    };
     programs.zsh.enable = true;
   };
 }

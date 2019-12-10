@@ -1,17 +1,17 @@
 # Read `man 5 sway` for a complete reference.
-
+xwayland enable
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 set $term alacritty
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $menu alacritty --class sway-launcher \
+    --command /bin/sh -c "compgen -c | grep -vE '^(_|\.)' | sort -u --parallel=$(nproc) | fzf | xargs -r swaymsg exec" 
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
 output * bg #000000 solid_color
-
 ### Idle configuration
 
 ### Input configuration
@@ -83,6 +83,22 @@ output * bg #000000 solid_color
     bindsym $mod+Shift+9 move container to workspace 9
     bindsym $mod+Shift+0 move container to workspace 10
 #
+# Audio
+#
+    bindsym XF86AudioMute exec pactl set-sink-volume @DEFAULT_SINK@ 0 && pactl set-sink-mute @DEFAULT_SINK@ 1
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ +5%
+#
+# Brightness
+#
+    bindsym XF86MonBrightnessDown exec sudo brightnessctl set 1%-
+    bindsym XF86MonBrightnessUp exec sudo brightnessctl set +1%
+#
+# Screenshots
+#
+    bindsym Print exec grim -g "$(slurp -c#CC0000FF -b#000000CC)" -t png - | wl-copy && notify-send -t 1500 'Screenshot taken' 'Copied to clipboard'
+    bindsym Shift+Print exec grim -t png - | wl-copy && notify-send -t 1500 'Screenshot taken' 'Copied to clipboard'
+#
 # Layout:
 #
     # Make the current focus fullscreen
@@ -90,24 +106,49 @@ output * bg #000000 solid_color
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
-
+#
+# Notifications
+#
+exec mako \
+    --anchor=top-right \
+    --background-color=#770000FF \
+    --text-color=#FFFFFFFF \
+    --border-color=#CC0000FF \
+    --border-size=5
+#
+# Locking
+#
+set $lock swaylock \
+    --color=#000000E5 --inside-color=#00000000 \
+    --inside-ver-color=#00000000 --text-ver-color=#FFFFFFFF \
+    --inside-wrong-color=#CC0000FF \
+    --line-color=#00000000
+bindsym $mod+L $lock
 #
 # Status Bar:
 #
-# Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
+exec waybar
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+# Launcher
+for_window [app_id="sway-launcher"] floating enable, border none
 
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
-}
+# Applications
+for_window [app_id="firefox"] border csd
+
+# Styling
+default_border pixel 3
+default_floating_border pixel 3
+
+gaps outer 3
+gaps inner 3
+
+client.focused          #CC0000FF #00000000 #FFFFFFFF #CC0000FF #CC0000FF
+client.focused_inactive #770000FF #00000000 #88888888 #770000FF #770000FF
+client.unfocused        #770000FF #00000000 #88888888 #770000FF #770000FF
+
+## Don't waste space
+smart_borders on
+smart_gaps on
 
 # Include hostname specific file
-include ~/.config/sway/hosts/$(hostname)
+include ~/.config/sway/hostconfig

@@ -66,6 +66,9 @@ in
   hardware.enableAllFirmware = true;
   nixpkgs.config.allowUnfree = true;
 
+  # Firmware update
+  services.fwupd.enable = true;
+
   # Internationalisation properties.
   i18n = {
     consoleKeyMap = "us";

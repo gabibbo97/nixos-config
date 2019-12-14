@@ -52,17 +52,4 @@ if [ $# -eq 0 ]; then
   sudo rsync -acv --delete "$ASSETDIR/" /etc/nixos/
   ## Recreate hardware-configuration.nix
   nixos-generate-config
-elif [ $# -eq 1 ] && [ "$1" = "backup" ]; then
-  # Backup
-  echo "Backing up"
-  ## Grab files
-  rsync -acv --delete '/etc/nixos/hosts/' ./hosts/
-  rsync -acv --delete '/etc/nixos/modules/' ./modules/
-  rsync -acv '/etc/nixos/configuration.nix' .
-  rsync -acv '/etc/nixos/secrets.nix' .
-  ## Restore configuration.nix template
-  devname=$(grep 'deviceName' configuration.nix | grep '=' | grep -v '\$' | grep -v '{' | grep -v '}' | awk '{ print $3 }' | grep -oE '"([^"]+)"' | tr -d '"')
-  sed -i "s/${devname}/{{ deviceName }}/" configuration.nix
-  ## Encrypt secrets
-  gpg --symmetric --output secrets.gpg secrets.nix
 fi

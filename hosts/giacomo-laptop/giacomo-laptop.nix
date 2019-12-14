@@ -2,6 +2,8 @@
 {
   imports = [
     ../../modules/laptop.nix
+    ../../hardware-support/intel-cpu.nix
+    ../../hardware-support/nvidia-gpu.nix
   ];
 
   home-manager.users.giacomo = {

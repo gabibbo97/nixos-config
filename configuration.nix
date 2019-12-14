@@ -104,7 +104,7 @@ in
   };
 
   networking.hostName = "${deviceName}";
-  
+
   # Programs
   programs = {
     chromium.enable = true;
@@ -118,7 +118,7 @@ in
 
     # TUI apps
     aria curl wget # Downloaders
-    bat nnn
+    bat ranger
     git
     gnupg
     rsync

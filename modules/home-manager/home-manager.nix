@@ -10,6 +10,7 @@ in
     xdg.enable = true;
 
     xdg.configFile."alacritty/alacritty.yml".source = "${dotfiles-dir}/alacritty/alacritty.yml";
+    xdg.configFile."ranger/rc.conf".source = "${dotfiles-dir}/ranger/rc.conf";
     xdg.configFile."sway/config".source = "${dotfiles-dir}/sway/config";
     xdg.configFile."waybar/style.css".source = "${dotfiles-dir}/waybar/style.css";
 

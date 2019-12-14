@@ -130,7 +130,10 @@ bindsym $mod+L $lock
 exec waybar
 
 # Launcher
-for_window [app_id="sway-launcher"] floating enable, border none
+for_window [app_id="sway-launcher"] border pixel 3
+for_window [app_id="sway-launcher"] floating enable
+for_window [app_id="sway-launcher"] focus
+
 
 # Applications
 for_window [app_id="firefox"] border csd

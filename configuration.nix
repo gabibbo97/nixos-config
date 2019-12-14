@@ -125,6 +125,7 @@ in
     git
     gnupg
     rsync
+    htop
   ];
 
   # This value determines the NixOS release with which your system is to be

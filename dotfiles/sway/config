@@ -6,7 +6,7 @@ xwayland enable
 set $mod Mod4
 set $term alacritty
 set $menu alacritty --class sway-launcher \
-    --command /bin/sh -c "compgen -c | grep -vE '^(_|\.)' | sort -u --parallel=$(nproc) | fzf | xargs -r swaymsg exec" 
+    --command /bin/sh -c "compgen -c | grep -vE '^(_|\.)' | sort -u --parallel=$(nproc) | fzf --color=hl:#770000,hl+:#CC0000,info:#505050,bg:#000000,bg+:#303030,pointer:#CC0000 | xargs -r swaymsg exec"
 
 ### Output configuration
 #

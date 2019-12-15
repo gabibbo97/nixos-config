@@ -10,13 +10,15 @@ in
 {
   imports =
     [
-      (./. + "/hosts/${deviceName}/${deviceName}.nix")
+      (./. + "/hosts/${deviceName}.nix")
       ./modules/adb.nix
       ./modules/audio.nix
       ./modules/docker.nix
       ./modules/fonts.nix
+      ./modules/hardware-support/hardware-support.nix
       ./modules/home-manager/home-manager.nix
       ./modules/k8s.nix
+      ./modules/laptop.nix
       ./modules/network/network.nix
       ./modules/office.nix
       ./modules/sway.nix

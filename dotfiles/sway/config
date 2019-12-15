@@ -152,6 +152,3 @@ client.unfocused        #770000FF #00000000 #88888888 #770000FF #770000FF
 ## Don't waste space
 smart_borders on
 smart_gaps on
-
-# Include hostname specific file
-include ~/.config/sway/hostconfig

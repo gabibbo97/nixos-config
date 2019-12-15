@@ -16,11 +16,13 @@ trap cleanup EXIT HUP TERM QUIT
 if [ $# -eq 0 ]; then
   # Configuration
   ## Get machine name
-  if [ -f "hosts/$(hostname)/$(hostname).nix" ]; then
+  if [ -n "$NEW_HOSTNAME" ]; then
+    MACHINE="$NEW_HOSTNAME"
+  elif [ -f "hosts/$(hostname).nix" ]; then
     echo "Trying to configure machine $(hostname)"
     MACHINE="$(hostname)"
   else
-    while ! [ -f "hosts/${MACHINE}/${MACHINE}.nix" ]; do
+    while ! [ -f "hosts/${MACHINE}.nix" ]; do
       echo "Available hosts:"
       clear
       for host in hosts/*; do

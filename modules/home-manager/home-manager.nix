@@ -15,7 +15,10 @@ in
 
     xdg.configFile."alacritty/alacritty.yml".source = "${dotfiles-dir}/alacritty/alacritty.yml";
     xdg.configFile."ranger/rc.conf".source = "${dotfiles-dir}/ranger/rc.conf";
-    xdg.configFile."sway/config".text = config.gabibbo97.sway.configFile;
+    xdg.configFile."sway/config" = {
+      onChange = "swaymsg reload";
+      text = config.gabibbo97.sway.configFile;
+    };
     xdg.configFile."waybar/style.css".source = "${dotfiles-dir}/waybar/style.css";
     xdg.configFile."waybar/config".text = builtins.toJSON config.gabibbo97.waybar.configFile;
 

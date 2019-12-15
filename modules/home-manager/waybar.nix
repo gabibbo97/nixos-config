@@ -13,12 +13,10 @@ in
     configFile = mkOption {
       type = types.attrs;
     };
-    extraModules = {
-      right = mkOption {
-        default = [];
-        type = types.listOf types.str;
-      };
-    };
+    extraModules = 
+      genAttrs
+        [ "left" "center" "right" ] 
+        (name: mkOption { default = []; type = types.listOf types.str; });
   };
 
   config = {
@@ -28,10 +26,10 @@ in
       modules-left = [
         "sway/workspaces"
         "sway/window"
-      ];
+      ] ++ cfg.extraModules.left;
       modules-center = [
         "clock"
-      ];
+      ] ++ cfg.extraModules.center;
       modules-right = [
         "tray"
         "network"

@@ -5,6 +5,12 @@
     enableCompletion = true;
     enableGlobalCompInit = true;
 
+    interactiveShellInit = ''
+      if [ "$(tty)" = "/dev/tty1" ]; then
+	      exec sway
+      fi
+    '';
+
     autosuggestions = {
       enable = true;
       extraConfig = {

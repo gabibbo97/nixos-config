@@ -4,7 +4,12 @@ let
   cfg = config.gabibbo97.sway;
 
   configKeyBind = key: command: "bindsym ${key} ${command}";
-  configKeyBinds = attrValues (mapAttrs configKeyBind cfg.extraBindings);
+
+  configKeyBinds =
+    attrValues
+      (
+        mapAttrs configKeyBind ( cfg.extraBindings // (mapAttrs (k: v: "exec " + v) cfg.extraCommandBindings) )
+      );
 in
 {
   options.gabibbo97.sway = {
@@ -12,6 +17,10 @@ in
       type = types.lines;
     };
     extraBindings = mkOption {
+      default = {};
+      type = types.attrsOf types.str;
+    };
+    extraCommandBindings = mkOption {
       default = {};
       type = types.attrsOf types.str;
     };

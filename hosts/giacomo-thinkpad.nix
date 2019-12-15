@@ -7,6 +7,11 @@
   gabibbo97.laptop.isLaptop = true;
 
   gabibbo97.sway = {
+    extraBindings = {
+      XF86Search = "exec $menu";
+      XF86LaunchA = "exec $menu";
+      XF86Explorer = "exec $menu";
+    };
     extraInputConfig = ''
       input "1739:0:Synaptics_tm2963-001" {
         dwt enabled

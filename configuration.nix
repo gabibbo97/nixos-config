@@ -116,6 +116,8 @@ in
     gnupg.agent.enable = true;
   };
   environment.systemPackages = with pkgs; [
+    manpages
+
     # GUI apps
     firefox-wayland
     mpv

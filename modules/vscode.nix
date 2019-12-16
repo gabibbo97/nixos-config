@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   # Settings
+  programs.zsh.shellAliases.code = "codium";
   home-manager.users.giacomo.programs.vscode = {
     enable = true;
     package = pkgs.vscodium;

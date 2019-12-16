@@ -119,11 +119,29 @@ exec mako \
 # Locking
 #
 set $lock swaylock \
-    --color=#000000E5 --inside-color=#00000000 \
-    --inside-ver-color=#00000000 --text-ver-color=#FFFFFFFF \
-    --inside-wrong-color=#CC0000FF \
-    --line-color=#00000000
-bindsym $mod+L $lock
+    --color 000000F0 \
+    --inside-color 000000F0 \
+    --inside-clear-color 00CC00 \
+    --inside-ver-color 000000F0 \
+    --inside-wrong-color 770000 \
+    --text-color FFFFFF \
+    --text-clear-color FFFFFF \
+    --text-ver-color FFFFFF \
+    --text-wrong-color FFFFFF \
+    --separator-color 000000F0 \
+    --ring-color CCCCCC \
+    --ring-wrong-color CC0000 \
+    --ring-ver-color 707070 \
+    --key-hl-color CC0000 \
+    --indicator-radius 100 \
+    --indicator-thickness 15
+bindsym $mod+L exec loginctl lock-session
+exec swayidle -w \
+    lock '$lock -f' \
+    before-sleep 'loginctl lock-session' \
+    timeout 300 'loginctl lock-session' \
+    timeout 600 'swaymsg "output * dpms off"' \
+         resume 'swaymsg "output * dpms on"'
 #
 # Status Bar:
 #

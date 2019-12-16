@@ -1,5 +1,10 @@
 { config, pkgs, ... }:
 {
+
+  hardware.trackpoint = {
+    enable = true;
+  };
+
   gabibbo97.hardware-support = {
     intelCPU = true;
   };

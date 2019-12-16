@@ -5,31 +5,29 @@ let
     url = "https://github.com/rycee/home-manager.git";
     rev = "621c98f15a31e7f0c1389f69aaacd0ac267ce29e";
   };
-in
-{
-  imports =
-    [
-      (./. + "/hosts/${deviceName}.nix")
-      ./modules/adb.nix
-      ./modules/audio.nix
-      ./modules/docker.nix
-      ./modules/fonts.nix
-      ./modules/hardware-support/hardware-support.nix
-      ./modules/home-manager/home-manager.nix
-      ./modules/k8s.nix
-      ./modules/laptop.nix
-      ./modules/network/network.nix
-      ./modules/office.nix
-      ./modules/sway.nix
-      ./modules/virtualisation.nix
-      ./modules/vscode.nix
-      ./modules/zsh.nix
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./secrets.nix
-      # Load home manager
-      "${home-manager}/nixos"
-    ];
+in {
+  imports = [
+    (./. + "/hosts/${deviceName}.nix")
+    ./modules/adb.nix
+    ./modules/audio.nix
+    ./modules/docker.nix
+    ./modules/fonts.nix
+    ./modules/hardware-support/hardware-support.nix
+    ./modules/home-manager/home-manager.nix
+    ./modules/k8s.nix
+    ./modules/laptop.nix
+    ./modules/network/network.nix
+    ./modules/office.nix
+    ./modules/sway.nix
+    ./modules/virtualisation.nix
+    ./modules/vscode.nix
+    ./modules/zsh.nix
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./secrets.nix
+    # Load home manager
+    "${home-manager}/nixos"
+  ];
 
   # Bootloader
   boot = {
@@ -41,9 +39,7 @@ in
         enable = true;
       };
     };
-    plymouth = {
-      enable = true;
-    };
+    plymouth = { enable = true; };
     tmpOnTmpfs = true; # /tmp on tmpfs
   };
 
@@ -74,17 +70,10 @@ in
   i18n = {
     consoleKeyMap = "us";
     defaultLocale = "it_IT.UTF-8";
-    extraLocaleSettings = {
-      LC_MESSAGES = "en_US.UTF-8";
-    };
-    supportedLocales = [
-      "en_US.UTF-8/UTF-8"
-      "it_IT.UTF-8/UTF-8"
-    ];
+    extraLocaleSettings = { LC_MESSAGES = "en_US.UTF-8"; };
+    supportedLocales = [ "en_US.UTF-8/UTF-8" "it_IT.UTF-8/UTF-8" ];
   };
-  time = {
-    timeZone = "Europe/Rome";
-  };
+  time = { timeZone = "Europe/Rome"; };
 
   # Users
   users.mutableUsers = false;
@@ -123,8 +112,11 @@ in
     tdesktop
 
     # TUI apps
-    aria curl wget # Downloaders
-    bat ranger
+    aria
+    curl
+    wget # Downloaders
+    bat
+    ranger
     git
     gnupg
     rsync

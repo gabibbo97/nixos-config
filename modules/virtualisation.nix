@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   # Enable LibVirt
   virtualisation = {
     libvirtd = {
@@ -9,9 +8,5 @@
   };
 
   # Management utilities
-  environment.systemPackages = with pkgs; [
-    vagrant
-    virtmanager
-    virt-viewer
-  ];
+  environment.systemPackages = with pkgs; [ vagrant virtmanager virt-viewer ];
 }

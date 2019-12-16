@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   # iwd
   networking.wireless.iwd.enable = true;
 

@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
-let
-  cfg = config.gabibbo97.hardware-support;
-in
-{
+let cfg = config.gabibbo97.hardware-support;
+in {
   config = mkIf cfg.intelCPU {
     # Update microcode
     hardware.cpu.intel.updateMicrocode = true;

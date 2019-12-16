@@ -1,39 +1,30 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     enableGlobalCompInit = true;
 
     interactiveShellInit = ''
-      if [ "$(tty)" = "/dev/tty1" ]; then
-	      exec sway
-      fi
-    '';
+            if [ "$(tty)" = "/dev/tty1" ]; then
+      	      exec sway
+            fi
+          '';
 
     autosuggestions = {
       enable = true;
-      extraConfig = {
-        "ZSH_AUTOSUGGEST_USE_ASYNC" = "y";
-      };
+      extraConfig = { "ZSH_AUTOSUGGEST_USE_ASYNC" = "y"; };
       strategy = "history";
     };
 
     syntaxHighlighting = {
       enable = true;
-      highlighters = [
-        "main"
-        "root"
-      ];
+      highlighters = [ "main" "root" ];
     };
 
     ohMyZsh = {
       enable = true;
       theme = "af-magic";
-      plugins = [
-        "colored-man-pages"
-        "extract"
-      ];
+      plugins = [ "colored-man-pages" "extract" ];
     };
 
     setOptions = [
@@ -43,9 +34,7 @@
       "SHARE_HISTORY"
     ];
 
-    shellAliases = {
-      cat = "bat";
-    };
+    shellAliases = { cat = "bat"; };
 
   };
 

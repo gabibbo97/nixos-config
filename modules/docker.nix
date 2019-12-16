@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   # Enable daemon
   virtualisation = {
     docker = {
@@ -15,7 +14,5 @@
   };
 
   # Enable docker-compose
-  environment.systemPackages = with pkgs; [
-    docker-compose
-  ];
+  environment.systemPackages = with pkgs; [ docker-compose ];
 }

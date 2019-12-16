@@ -1,7 +1,3 @@
-{ config, pkgs, ... }:
-{
-  imports = [
-    ./wireless/bluetooth.nix
-    ./wireless/wifi.nix
-  ];
+{ config, pkgs, ... }: {
+  imports = [ ./wireless/bluetooth.nix ./wireless/wifi.nix ];
 }

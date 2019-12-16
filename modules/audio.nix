@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   # Enable PulseAudio
   hardware.pulseaudio = {
     enable = true;

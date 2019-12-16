@@ -2,46 +2,36 @@
 with lib;
 let
   cfg = config.gabibbo97.waybar;
-  moduleList =
-    cfg.configFile.modules-left 
-      ++ cfg.configFile.modules-center
-      ++ cfg.configFile.modules-right;
+  moduleList = cfg.configFile.modules-left ++ cfg.configFile.modules-center
+    ++ cfg.configFile.modules-right;
   hasModule = moduleName: builtins.elem moduleName moduleList;
-in
-{
+in {
   options.gabibbo97.waybar = {
-    configFile = mkOption {
-      type = types.attrs;
-    };
-    extraModules = 
-      genAttrs
-        [ "left" "center" "right" ] 
-        (name: mkOption { default = []; type = types.listOf types.str; });
+    configFile = mkOption { type = types.attrs; };
+    extraModules = genAttrs [ "left" "center" "right" ] (name:
+      mkOption {
+        default = [ ];
+        type = types.listOf types.str;
+      });
   };
 
   config = {
     gabibbo97.waybar.configFile = {
       layer = "top";
       position = "top";
-      modules-left = [
-        "sway/workspaces"
-        "sway/window"
-      ] ++ cfg.extraModules.left;
-      modules-center = [
-        "clock"
-      ] ++ cfg.extraModules.center;
-      modules-right = [
-        "tray"
-        "network"
-        "pulseaudio"
-      ] ++ cfg.extraModules.right;
+      modules-left = [ "sway/workspaces" "sway/window" ]
+        ++ cfg.extraModules.left;
+      modules-center = [ "clock" ] ++ cfg.extraModules.center;
+      modules-right = [ "tray" "network" "pulseaudio" ]
+        ++ cfg.extraModules.right;
       network = {
         format = "{ifname}";
         format-wifi = "{essid} ({signalStrength}%) ";
         format-ethernet = "{ifname} {ipaddr} {cidr} ";
         format-disconnected = "OFFLINE";
         tooltip-format = "{ifname}";
-        tooltip-format-wifi = "{essid} ({signalStrength}% UP {bandwidthUpBits} DOWN {bandwidthDownBits}) ";
+        tooltip-format-wifi =
+          "{essid} ({signalStrength}% UP {bandwidthUpBits} DOWN {bandwidthDownBits}) ";
         tooltip-format-ethernet = "{ifname} ";
         tooltip-format-disconnected = "Disconnected";
         max-length = 50;
@@ -70,9 +60,7 @@ in
         format-critical = "";
         format-charging = "{time} ";
         format-full = "FULL";
-        format-icons = [
-          "" "" "" "" ""
-        ];
+        format-icons = [ "" "" "" "" "" ];
       };
     };
   };

@@ -1,21 +1,22 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   # Settings
   programs.zsh.shellAliases.code = "codium";
   home-manager.users.giacomo.programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
-      bbenoist.Nix # Nix language support
-    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-      # curl -L "https://${EXT_AUTHOR}.gallery.vsassets.io/_apis/public/gallery/publisher/${EXT_AUTHOR}/extension/${EXT_NAME}/${EXT_VERSION}/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage" | sha256sum | awk '{ print $1 }'
-      {
-        name = "vscode-icons";
-        publisher = "vscode-icons-team";
-        version = "9.6.0";
-        sha256 = "9577f431553e467fb3acbcda5177a66da98870a3888177839e6d46c243792e80";
-      }
-    ];
+    extensions = with pkgs.vscode-extensions;
+      [
+        bbenoist.Nix # Nix language support
+      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        # curl -L "https://${EXT_AUTHOR}.gallery.vsassets.io/_apis/public/gallery/publisher/${EXT_AUTHOR}/extension/${EXT_NAME}/${EXT_VERSION}/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage" | sha256sum | awk '{ print $1 }'
+        {
+          name = "vscode-icons";
+          publisher = "vscode-icons-team";
+          version = "9.6.0";
+          sha256 =
+            "9577f431553e467fb3acbcda5177a66da98870a3888177839e6d46c243792e80";
+        }
+      ];
     userSettings = {
       debug.enableAllHovers = true;
       debug.inlineValues = true;

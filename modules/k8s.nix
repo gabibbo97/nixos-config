@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   # Utilities
   environment.systemPackages = with pkgs; [
     kind

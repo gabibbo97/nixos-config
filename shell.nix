@@ -1,7 +1,3 @@
-{ config, pkgs ? import <nixpkgs> {} }:
+{ config, pkgs ? import <nixpkgs> { } }:
 
-mkShell {
-  buildInputs = with pkgs; [
-    git gnupg rsync
-  ];
-}
+mkShell { buildInputs = with pkgs; [ git gnupg rsync ]; }

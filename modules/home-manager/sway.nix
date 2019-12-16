@@ -5,23 +5,17 @@ let
 
   configKeyBind = key: command: "bindsym ${key} ${command}";
 
-  configKeyBinds =
-    attrValues
-      (
-        mapAttrs configKeyBind ( cfg.extraBindings // (mapAttrs (k: v: "exec " + v) cfg.extraCommandBindings) )
-      );
-in
-{
+  configKeyBinds = attrValues (mapAttrs configKeyBind (cfg.extraBindings
+    // (mapAttrs (k: v: "exec " + v) cfg.extraCommandBindings)));
+in {
   options.gabibbo97.sway = {
-    configFile = mkOption {
-      type = types.lines;
-    };
+    configFile = mkOption { type = types.lines; };
     extraBindings = mkOption {
-      default = {};
+      default = { };
       type = types.attrsOf types.str;
     };
     extraCommandBindings = mkOption {
-      default = {};
+      default = { };
       type = types.attrsOf types.str;
     };
     extraInputConfig = mkOption {

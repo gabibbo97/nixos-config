@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   gabibbo97.hardware-support = {
     intelCPU = true;
     nvidiaGPU = true;
@@ -24,7 +23,5 @@
     '';
   };
 
-  gabibbo97.waybar.configFile = {
-    output = "eDP-1";
-  };
+  gabibbo97.waybar.configFile = { output = "eDP-1"; };
 }

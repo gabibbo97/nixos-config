@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   imports = [
 
   ];
@@ -18,8 +17,11 @@
     tdesktop
 
     # TUI apps
-    ansible ansible-lint
-    aria curl wget # Downloaders
+    ansible
+    ansible-lint
+    aria
+    curl
+    wget # Downloaders
     bat
     ranger
     git

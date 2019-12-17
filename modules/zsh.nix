@@ -34,7 +34,10 @@
       "SHARE_HISTORY"
     ];
 
-    shellAliases = { cat = "bat"; };
+    shellAliases = {
+      cat = "bat";
+      nix-shell = "nix-shell --command zsh";
+    };
 
   };
 

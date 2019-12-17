@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   # Journald
   services.journald.extraConfig = ''
     Storage = volatile

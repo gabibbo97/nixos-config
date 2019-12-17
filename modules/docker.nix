@@ -14,16 +14,14 @@
   };
 
   # Mount Docker root on tmpfs
-  systemd.mounts = [
-    {
-      before = [ "docker.service" "docker.socket" ];
-      requiredBy = [ "docker.service" "docker.socket" ];
-      description = "Mount Docker storage on tmpfs";
-      type = "tmpfs";
-      what = "tmpfs";
-      where = "/var/lib/docker";
-    }
-  ];
+  systemd.mounts = [{
+    before = [ "docker.service" "docker.socket" ];
+    requiredBy = [ "docker.service" "docker.socket" ];
+    description = "Mount Docker storage on tmpfs";
+    type = "tmpfs";
+    what = "tmpfs";
+    where = "/var/lib/docker";
+  }];
 
   # Enable docker-compose
   environment.systemPackages = with pkgs; [ docker-compose ];

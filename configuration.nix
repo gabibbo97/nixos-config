@@ -8,6 +8,7 @@ let
 in {
   imports = [
     (./. + "/hosts/${deviceName}.nix")
+    ./modules/apps/apps.nix
     ./modules/adb.nix
     ./modules/audio.nix
     ./modules/docker.nix
@@ -19,6 +20,7 @@ in {
     ./modules/network/network.nix
     ./modules/office.nix
     ./modules/sway.nix
+    ./modules/systemd.nix
     ./modules/virtualisation.nix
     ./modules/vscode.nix
     ./modules/zsh.nix
@@ -97,31 +99,6 @@ in {
   };
 
   networking.hostName = "${deviceName}";
-
-  # Programs
-  programs = {
-    chromium.enable = true;
-    gnupg.agent.enable = true;
-  };
-  environment.systemPackages = with pkgs; [
-    manpages
-
-    # GUI apps
-    firefox-wayland
-    mpv
-    tdesktop
-
-    # TUI apps
-    aria
-    curl
-    wget # Downloaders
-    bat
-    ranger
-    git
-    gnupg
-    rsync
-    htop
-  ];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database

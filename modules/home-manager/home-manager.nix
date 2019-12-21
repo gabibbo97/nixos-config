@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let dotfiles-dir = "/etc/nixos/dotfiles";
 in {
-  imports = [ ./sway.nix ./waybar.nix ];
+  imports = [ ./i3status.nix ./sway.nix ];
   home-manager.users.giacomo = {
     programs = { home-manager.enable = true; };
     xdg.enable = true;
@@ -10,10 +10,6 @@ in {
       "${dotfiles-dir}/alacritty/alacritty.yml";
     xdg.configFile."ranger/rc.conf".source = "${dotfiles-dir}/ranger/rc.conf";
     xdg.configFile."sway/config".text = config.gabibbo97.sway.configFile;
-    xdg.configFile."waybar/style.css".source =
-      "${dotfiles-dir}/waybar/style.css";
-    xdg.configFile."waybar/config".text =
-      builtins.toJSON config.gabibbo97.waybar.configFile;
 
     programs.git.enable = true;
     programs.ssh = {

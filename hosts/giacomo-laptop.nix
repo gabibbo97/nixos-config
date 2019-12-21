@@ -21,7 +21,6 @@
         xkb_variant intl
       }
     '';
+    swayBar.outputs = [ "eDP-1" ];
   };
-
-  gabibbo97.waybar.configFile = { output = "eDP-1"; };
 }

@@ -13,7 +13,6 @@
     extraConfig = ''
       Storage = external
       Compress = yes
-      MaxUse = 25%
     '';
   };
 }

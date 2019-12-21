@@ -7,7 +7,7 @@
       swayidle
       swaylock
       alacritty # Default terminal
-      (waybar.override { pulseSupport = true; }) # Status bar
+      # (waybar.override { pulseSupport = true; }) # Status bar
       xwayland # Wayland support
       fzf # Launcher
       wl-clipboard # Clipboard
@@ -20,6 +20,9 @@
     ];
   };
 
-  # Waybar icon fonts
-  fonts.fonts = with pkgs; [ font-awesome ];
+  # Display Manager
+  services.xserver.displayManager.gdm = {
+    enable = true;
+    wayland = true;
+  };
 }

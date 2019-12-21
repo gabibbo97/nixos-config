@@ -28,8 +28,5 @@ in {
     systemd.services."systemd-networkd-wait-online".enable = false;
     systemd.targets."systemd-networkd-wait-online".enable = false;
 
-    # Add battery status to waybar
-    gabibbo97.waybar.extraModules.right = [ "battery" ];
-
   };
 }

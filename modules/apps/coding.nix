@@ -8,6 +8,14 @@
   ] ++ [
     android-studio
   ] ++ [
-    eclipses.eclipse-java
+    (eclipses.eclipseWithPlugins {
+      eclipse = pkgs.eclipses.eclipse-sdk;
+      jvmArgs = [ "-Xmx2g" ];
+      plugins = with eclipses.plugins;
+        [
+          cdt
+          jdt
+        ];
+    })
   ];
 }

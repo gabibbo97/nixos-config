@@ -17,8 +17,7 @@
     tdesktop
 
     # TUI apps
-    ansible
-    ansible-lint
+    ansible # ansible-lint
     aria
     curl
     wget # Downloaders

@@ -70,12 +70,14 @@ in {
 
   # Internationalisation properties.
   i18n = {
-    consoleKeyMap = "us";
     defaultLocale = "it_IT.UTF-8";
     extraLocaleSettings = { LC_MESSAGES = "en_US.UTF-8"; };
     supportedLocales = [ "en_US.UTF-8/UTF-8" "it_IT.UTF-8/UTF-8" ];
   };
   time = { timeZone = "Europe/Rome"; };
+  console = {
+    keyMap = "us";
+  };
 
   # Users
   users.mutableUsers = false;

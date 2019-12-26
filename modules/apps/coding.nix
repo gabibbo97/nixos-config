@@ -13,8 +13,6 @@
       jvmArgs = [ "-Xmx2g" ];
       plugins = with eclipses.plugins;
         [
-          cdt
-          jdt
         ];
     })
   ];
